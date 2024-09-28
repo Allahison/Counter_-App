@@ -1,0 +1,217 @@
+/* Variables for Light/Dark Mode */
+:root {
+  --bg-color-light: #f9f9f9;
+  --bg-color-dark: #1e1e2e;
+  --text-color-light: #333;
+  --text-color-dark: #f1f1f1;
+  --primary-color-light: #06beb6;
+  --primary-color-dark: #48c9b0;
+  --secondary-color-light: #ff4d5a;
+  --secondary-color-dark: #e74c3c;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Dark Mode Classes */
+.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* App Container */
+.App {
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Title with Animation */
+.app-title {
+  font-size: 36px;
+  color: var(--primary-color-light);
+  animation: pulseTitle 3s ease-in-out infinite;
+}
+
+.dark .app-title {
+  color: var(--primary-color-dark);
+}
+
+/* Keyframe Animation for Title */
+@keyframes pulseTitle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Counter Styling */
+.counter h2 {
+  font-size: 80px;
+  margin: 20px 0;
+  transition: color 0.4s ease;
+}
+
+/* Count Color Based on Even/Odd */
+.even {
+  color: var(--primary-color-light);
+}
+.odd {
+  color: var(--secondary-color-light);
+}
+.dark .even {
+  color: var(--primary-color-dark);
+}
+.dark .odd {
+  color: var(--secondary-color-dark);
+}
+
+/* Buttons with Pulse Effect */
+.pulse-button {
+  background-color: var(--primary-color-light);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pulse-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.pulse-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  transition: all 0.6s ease;
+}
+
+.pulse-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Dark Mode Button Styling */
+.dark .pulse-button {
+  background-color: var(--primary-color-dark);
+}
+.dark .reset {
+  background-color: var(--secondary-color-dark);
+}
+.reset {
+  background-color: var(--secondary-color-light);
+}
+
+/* Toggle Switch for Dark Mode */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color-light);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 28px;
+  }
+
+  .counter h2 {
+    font-size: 60px;
+  }
+
+  .pulse-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 24px;
+  }
+
+  .counter h2 {
+    font-size: 48px;
+  }
+
+  .pulse-button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
